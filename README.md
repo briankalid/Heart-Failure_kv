@@ -86,5 +86,204 @@ Y la siguiente matriz de correlación para los datos de trabajo:
 > Cada cuadro contiene la correlación entre variables.
 
 # Descripción de la tarea de aprendizaje no supervisado
+Contamos con un conjunto de datos de múltiples personas que tuvieron insuficiencia cardiaca, 
+dicho conjunto de datos describe a cada persona con múltiples estadísticas, por lo tanto se a procedido
+a usar un algoritmo de clustering, específicamente el algoritmo **K-means**
+para agrupar a estas personas por grupos, de tal manera que
+podamos buscar similitudes en sus estadísticas de un grupo frente a otro y determinar cuales son más 
+proclives a morir de insuficiencia cardiaca.
+## Elección efectiva de un valor K
+Se procedió a realizar la elección adecuada para el valor de *k*
+haciendo uso del método **elbow** obteniendo el siguiente resultados:
 
+![elbow](imagenes/elbow.png)
+> El cruce entre el número para k y la distorsión de puntaje determina el valor adecuado.
+
+Podemos observar que el cruce se da en el valor 5 mismo en el que se 
+tiene la menor distorsión para un valor bajo de k. 
+Esto ya nos da un indicio de que el valor a tomar es 5. Para corroborar hemos hecho uso de **silhouette**:
+
+![silhouette](imagenes/siloe.png)
+> Los colores representan grupos.
+
+Observamos que para un valor igual a 5 obtenemos grupos perfectamente separados. Por lo tanto
+hemos de tomar k=5 para proceder a la implementación de k-means.
+
+![visualkmeans](imagenes/kmeansvil.png)
+ > Visualización de los grupos formados por k-means.
         
+# Descripción de experimentos
+En un principio se realizo la formación de grupos con K-means al detectar la ausencia de valores nulos. 
+Pero cuando se evaluaron los resultados, no nos dijeron mucho debido a que no había mucha distinción de un grupo a otro. 
+Fue entonces cuando se planteo la idea de utilizar una matriz  de correlación para  justificar
+la eliminación de algunas columnas.
+    
+Para poner en evidencia el contraste entre efectuar el uso de k-means cuando no se filtran columnas y cuando 
+se filtran columnas, tomaremos los dos grupos de mayor probabilidad de muerte, tanto cuando se filtran columnas
+como cuando no. En el caso de cuando no se filtran columnas, una vez que tomemos los dos grupos, quitaremos las columnas
+que si filtramos en los otros datos. Esto pondrá en evidencia el problema sobre distinción de grupos.
+Procediendo entonces, se obtuvieron los siguientes resultados para datos con **elección de columnas:**
+
+- age & 66.696429
+- ejection\_fraction & 36.232143
+- serum\_creatinine  &1.860536
+- time & 24.071429
+- DEATH\_EVENT & 0.892857
+> Valores obtenidos con elección de columnas a partir de la matriz de correlación, primer grupo 
+con mayor probabilidad de muerte.
+
+- age & 60.591549
+- ejection\_fraction & 38.802817
+- serum\_creatinine & 1.294789
+- time & 79.619718
+- DEATH\_EVENT & 0.309859
+> Valores obtenidos con elección de columnas  a partir de la matriz de correlación, segundo
+grupo con mayor probabilidad de muerte.
+
+Ahora hacemos la comparativa contra las tablas **sin elección de columnas:**
+ 
+- age & 60.818182
+- ejection\_fraction & 36.509091
+- serum\_creatinine & 1.492364
+- time & 134.109091
+- DEATH\_EVENT & 0.363636
+> Valores obtenidos sin elección de columnas, primer grupo con mayor probabilidad de muerte.
+
+- age & 60.518528
+- ejection\_fraction & 38.611111
+- serum\_creatinine & 1.517500
+- time & 133.000000
+- DEATH\_EVENT & 0.361111
+> Valores obtenidos sin elección de columnas, segundo grupo con mayor probabilidad de muerte.
+
+
+A partir de las tablas anteriores, podemos observar que no hay mucha distinción en los datos cuando
+no se hace selección de columnas como para poder obtener conocimiento.  En cambio cuando hay
+selección de columnas de trabajo a partir de la correlación con el *target event*, obtenemos una clara distinción
+de los grupos. Esto justifica el uso de la matriz de correlación usada anteriormente para poder justificar la eliminación de algunas 
+columnas en el procesamiento de los datos para trabajar.
+
+
+
+# Análisis y discusión de resultados
+Retomando nuestra elección para el valor de K y realizado la aplicación del algoritmo \textit{K-means} sobre los datos.
+Hemos obtenido 5 grupos perfectamente diferenciables unos de otros que se presentan en las siguientes tablas:
+    
+ - age & 56.095238
+ - ejection\_fraction & 38.380952
+ - serum\_creatinine & 1.191190
+ - time & 249.190476
+ - DEATH\_EVENT & 0.047619
+ > Cluster número 1 formado a partir de K-means.
+ > * Edad promedio: 56 años
+ > * Seguimiento promedio: 249 días
+ > * Probabilidad de muerte: 4%
+    
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{| c | c |}
+                \hline
+                    age & 60.031541\\
+                    ejection\_fraction & 37.702703\\
+                    serum\_creatinine & 1.372568\\
+                    time & 196.932432\\
+                    DEATH\_EVENT & 0.162162\\
+                \hline
+            \end{tabular}
+            \caption{Cluster número 2 formado a partir de K-means.}
+            \label{cluster_2}
+        \end{center}
+    \end{table} 
+     \begin{itemize}
+        \item Edad promedio: 60 años
+        \item Seguimiento promedio: 196 días
+        \item Probabilidad de muerte: 16\%
+    \end{itemize}
+    
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{| c | c |}
+                \hline
+                    age & 66.696429\\
+                    ejection\_fraction & 36.232143\\
+                    serum\_creatinine & 1.860536\\
+                    time & 24.071429\\
+                    DEATH\_EVENT & 0.892857\\
+                \hline
+            \end{tabular}
+            \caption{Cluster número 3 formado a partir de K-means.}
+            \label{cluster_3}
+        \end{center}
+    \end{table}
+     \begin{itemize}
+        \item Edad promedio: 66 años
+        \item Seguimiento promedio: 24 días
+        \item Probabilidad de muerte: 89\%
+    \end{itemize}
+    
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{| c | c |}
+                \hline
+                    age & 59.892857\\
+                    ejection\_fraction & 39.303571\\
+                    serum\_creatinine & 1.233036\\
+                    time & 123.357143\\
+                    DEATH\_EVENT & 0.178571\\
+                \hline
+            \end{tabular}
+            \caption{Cluster número 4 formado a partir de K-means.}
+            \label{cluster_4}
+        \end{center}
+    \end{table} 
+     \begin{itemize}
+        \item Edad promedio: 59 años
+        \item Seguimiento promedio: 123 días
+        \item Probabilidad de muerte: 17\%
+    \end{itemize}
+    
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{| c | c |}
+                \hline
+                    age & 60.591549\\
+                    ejection\_fraction & 38.802817\\
+                    serum\_creatinine & 1.294789\\
+                    time & 79.619718\\
+                    DEATH\_EVENT & 0.309859\\
+                \hline
+            \end{tabular}
+            \caption{Cluster número 5 formado a partir de K-means.}
+            \label{cluster_5}
+        \end{center}
+    \end{table} 
+     \begin{itemize}
+        \item Edad promedio: 60 años
+        \item Seguimiento promedio: 79 días
+        \item Probabilidad de muerte: 30\%
+    \end{itemize}\\
+    \\
+    
+    A partir de los resultados anteriores podemos observar 
+    que se trata de personas de edad avanzada, comprendida entre
+    55 y 66 años, con porcentajes de sangre que sale del corazón 
+    en cada contracción muy similares así como 
+    un nivel de creatinina sérica en sangre también bastante similar.
+    Lo que varía considerablemente de un grupo a otro son los datos 
+    destacados: la \textbf{edad}, los \textbf{días de
+    seguimiento} y la \textbf{probabilidad de muerte}.\\
+    
+    Si nos fijamos detenidamente en estos valores podemos darnos cuenta 
+    que las personas de edad avanzada que padecieron insuficiencia cardiaca
+    requieren de un seguimiento prolongado para garantizar el no deceso 
+    tras la enfermedad. Es decir, las personas de edad avanzada que 
+    padecieron insuficiencia cardíaca aumentan sus probabilidades de
+    éxito al recibir un seguimiento prolongado (ver tab. \ref{cluster_1}),
+    por otro lado si este seguimiento es demasiado pequeño, sus probabilidades
+    de fallo aumentan bastante (ver tab. \ref{cluster_3}).\\
+    
+    A partir de los resultados, en el contexto del problema. 
+    Si fuésemos doctores, podríamos dar mayor y mejor seguimiento
+    a este tipo de pacientes, pacientes con insuficiencia cardiaca,
+    para garantizar su éxito tras la enfermedad. 
+    
