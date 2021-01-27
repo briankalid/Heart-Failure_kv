@@ -179,111 +179,78 @@ Hemos obtenido 5 grupos perfectamente diferenciables unos de otros que se presen
  > * Seguimiento promedio: 249 días
  > * Probabilidad de muerte: 4%
     
-    \begin{table}[H]
-        \begin{center}
-            \begin{tabular}{| c | c |}
-                \hline
-                    age & 60.031541\\
-                    ejection\_fraction & 37.702703\\
-                    serum\_creatinine & 1.372568\\
-                    time & 196.932432\\
-                    DEATH\_EVENT & 0.162162\\
-                \hline
-            \end{tabular}
-            \caption{Cluster número 2 formado a partir de K-means.}
-            \label{cluster_2}
-        \end{center}
-    \end{table} 
-     \begin{itemize}
-        \item Edad promedio: 60 años
-        \item Seguimiento promedio: 196 días
-        \item Probabilidad de muerte: 16\%
-    \end{itemize}
+ - age & 60.031541
+ - ejection\_fraction & 37.702703
+ - serum\_creatinine & 1.372568
+ - time & 196.932432
+ - DEATH\_EVENT & 0.162162
+ > Cluster número 2 formado a partir de K-means.
+ > * Edad promedio: 60 años
+ > * Seguimiento promedio: 196 días
+ > * Probabilidad de muerte: 16%
+ 
+ - age & 66.696429
+ - ejection\_fraction & 36.232143
+ - serum\_creatinine & 1.860536
+ - time & 24.071429
+ - DEATH\_EVENT & 0.892857
+ > Cluster número 3 formado a partir de K-means.
+ > * Edad promedio: 66 años
+ > * Seguimiento promedio: 24 días
+ > * Probabilidad de muerte: 89%
+ 
+ - age & 59.892857
+ - ejection\_fraction & 39.303571
+ - serum\_creatinine & 1.233036
+ - time & 123.357143
+ - DEATH\_EVENT & 0.178571
+ > Cluster número 4 formado a partir de K-means.
+ > * Edad promedio: 59 años
+ > * Seguimiento promedio: 123 días
+ > * Probabilidad de muerte: 17%
+ 
+ - age & 60.591549
+ - ejection\_fraction & 38.802817
+ - serum\_creatinine & 1.294789
+ - time & 79.619718
+ - DEATH\_EVENT & 0.309859
+ > Cluster número 5 formado a partir de K-means.
+ > * Edad promedio: 60 años
+ > * Seguimiento promedio: 79 días
+ > * Probabilidad de muerte: 30%
+ 
+ 
+ A partir de los resultados anteriores podemos observar que se trata de personas de edad avanzada, comprendida entre
+ 55 y 66 años, con porcentajes de sangre que sale del corazón en cada contracción muy similares así como 
+ un nivel de creatinina sérica en sangre también bastante similar. Lo que varía considerablemente de un grupo a otro son los datos 
+ destacados: la **edad**, los **días de seguimiento** y la **probabilidad de muerte**.
+ 
+ Si nos fijamos detenidamente en estos valores podemos darnos cuenta que las personas de edad avanzada que padecieron insuficiencia cardiaca
+ requieren de un seguimiento prolongado para garantizar el no deceso tras la enfermedad. Es decir, las personas de edad avanzada que 
+ padecieron insuficiencia cardíaca aumentan sus probabilidades de éxito al recibir un seguimiento prolongado,
+ por otro lado si este seguimiento es demasiado pequeño, sus probabilidades de fallo aumentan bastante.
+ 
+ A partir de los resultados, en el contexto del problema. Si fuésemos doctores, podríamos dar mayor y mejor seguimiento
+ a este tipo de pacientes, pacientes con insuficiencia cardiaca, para garantizar su éxito tras la enfermedad. 
     
-    \begin{table}[H]
-        \begin{center}
-            \begin{tabular}{| c | c |}
-                \hline
-                    age & 66.696429\\
-                    ejection\_fraction & 36.232143\\
-                    serum\_creatinine & 1.860536\\
-                    time & 24.071429\\
-                    DEATH\_EVENT & 0.892857\\
-                \hline
-            \end{tabular}
-            \caption{Cluster número 3 formado a partir de K-means.}
-            \label{cluster_3}
-        \end{center}
-    \end{table}
-     \begin{itemize}
-        \item Edad promedio: 66 años
-        \item Seguimiento promedio: 24 días
-        \item Probabilidad de muerte: 89\%
-    \end{itemize}
+# Conclusión
+En \cite{hf} así como en \cite{hf3_wiki} se hace mención sobre que 
+la insuficiencia cardiaca es grave y usualmente no tiene cura pero se puede tratar con tratamiento y un cambio saludable en el estilo
+de vida. Lo anterior nos ayudara a llevar el problema de una manera más placentera.
+
+A partir de los resultados de nuestro trabajo podemos ofrecer como argumento el hecho de dar seguimiento a las personas, esto con 
+la finalidad de aumentar sus probabilidades de éxito.
     
-    \begin{table}[H]
-        \begin{center}
-            \begin{tabular}{| c | c |}
-                \hline
-                    age & 59.892857\\
-                    ejection\_fraction & 39.303571\\
-                    serum\_creatinine & 1.233036\\
-                    time & 123.357143\\
-                    DEATH\_EVENT & 0.178571\\
-                \hline
-            \end{tabular}
-            \caption{Cluster número 4 formado a partir de K-means.}
-            \label{cluster_4}
-        \end{center}
-    \end{table} 
-     \begin{itemize}
-        \item Edad promedio: 59 años
-        \item Seguimiento promedio: 123 días
-        \item Probabilidad de muerte: 17\%
-    \end{itemize}
-    
-    \begin{table}[H]
-        \begin{center}
-            \begin{tabular}{| c | c |}
-                \hline
-                    age & 60.591549\\
-                    ejection\_fraction & 38.802817\\
-                    serum\_creatinine & 1.294789\\
-                    time & 79.619718\\
-                    DEATH\_EVENT & 0.309859\\
-                \hline
-            \end{tabular}
-            \caption{Cluster número 5 formado a partir de K-means.}
-            \label{cluster_5}
-        \end{center}
-    \end{table} 
-     \begin{itemize}
-        \item Edad promedio: 60 años
-        \item Seguimiento promedio: 79 días
-        \item Probabilidad de muerte: 30\%
-    \end{itemize}\\
-    \\
-    
-    A partir de los resultados anteriores podemos observar 
-    que se trata de personas de edad avanzada, comprendida entre
-    55 y 66 años, con porcentajes de sangre que sale del corazón 
-    en cada contracción muy similares así como 
-    un nivel de creatinina sérica en sangre también bastante similar.
-    Lo que varía considerablemente de un grupo a otro son los datos 
-    destacados: la \textbf{edad}, los \textbf{días de
-    seguimiento} y la \textbf{probabilidad de muerte}.\\
-    
-    Si nos fijamos detenidamente en estos valores podemos darnos cuenta 
-    que las personas de edad avanzada que padecieron insuficiencia cardiaca
-    requieren de un seguimiento prolongado para garantizar el no deceso 
-    tras la enfermedad. Es decir, las personas de edad avanzada que 
-    padecieron insuficiencia cardíaca aumentan sus probabilidades de
-    éxito al recibir un seguimiento prolongado (ver tab. \ref{cluster_1}),
-    por otro lado si este seguimiento es demasiado pequeño, sus probabilidades
-    de fallo aumentan bastante (ver tab. \ref{cluster_3}).\\
-    
-    A partir de los resultados, en el contexto del problema. 
-    Si fuésemos doctores, podríamos dar mayor y mejor seguimiento
-    a este tipo de pacientes, pacientes con insuficiencia cardiaca,
-    para garantizar su éxito tras la enfermedad. 
-    
+Algunas de las preguntas abiertas en el presente proyecto es sobre 
+*¿cómo podemos corroborar que efectivamente las variables que filtramos no tienen mucho que ver en el problema?*
+Así mismo, *¿existen otras variables que no fueron contempladas a la hora de formar el conjunto de datos?*
+
+Una segunda parte para el proyecto probablemente consistiría en el estudio
+de otras variables como la dieta de la personas, ya que como 
+se menciona en \cite{hf2} una buena manera de prevenir la insuficiencia cardíaca es controlando las afecciones que la 
+causan.
+
+# Referencias
+- hf 2017. What is Heart Failure? https://www.heart.org.
+- hf3_wiki 2021. Heart failure. https://en.wikipedia.org/wiki/Heart_failure. 
+- hf2 2020. Heart failure. https://www.mayoclinic.org.
